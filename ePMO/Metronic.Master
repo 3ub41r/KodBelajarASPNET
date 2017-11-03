@@ -1292,23 +1292,10 @@
 <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor-desktop m-grid--desktop m-body">
 <div class="m-grid__item m-grid__item--fluid  m-grid m-grid--ver	m-container m-container--responsive m-container--xxl m-page__container">
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
-<!-- BEGIN: Subheader -->
-<div class="m-subheader ">
-    <div class="d-flex align-items-center">
-        <div class="mr-auto">
-            <h3 class="m-subheader__title ">
-                Pencapaian Program
-            </h3>
-        </div>
-    </div>
-</div>
-<!-- END: Subheader -->
-<div class="m-content">
     <form id="form1" runat="server">
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
         </asp:ContentPlaceHolder>
     </form>
-</div>
 </div>
 </div>
 </div>

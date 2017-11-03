@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[PencapaianProgram]    Script Date: 11/01/2017 23:01:37 ******/
+/****** Object:  Table [dbo].[PencapaianProgram]    Script Date: 11/03/2017 09:23:02 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[PencapaianProgram](
 	[Lulus] [bit] NULL,
 	[JenisKemasukan] [varchar](50) NULL,
 	[Terhapus] [bit] NOT NULL,
-	[IdPengguna] [int] NOT NULL,
+	[IdPengguna] [int] NULL,
  CONSTRAINT [PK_PencapaianProgram] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -37,4 +37,5 @@ GO
 
 ALTER TABLE [dbo].[PencapaianProgram] ADD  CONSTRAINT [DF_PencapaianProgram_Terhapus]  DEFAULT ((0)) FOR [Terhapus]
 GO
+
 
