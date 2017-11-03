@@ -288,6 +288,7 @@
     <Content Include="Assets\assets\vendors\base\fonts\summernote\summernote.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="PencapaianProgram\Add.aspx" />
+    <Content Include="PencapaianProgram\Excel.aspx" />
     <Content Include="PencapaianProgram\List.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -366,6 +367,13 @@
     </Compile>
     <Compile Include="PencapaianProgram\Add.aspx.designer.cs">
       <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PencapaianProgram\Excel.aspx.cs">
+      <DependentUpon>Excel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PencapaianProgram\Excel.aspx.designer.cs">
+      <DependentUpon>Excel.aspx</DependentUpon>
     </Compile>
     <Compile Include="PencapaianProgram\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>

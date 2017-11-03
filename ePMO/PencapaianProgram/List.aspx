@@ -19,7 +19,18 @@
         </asp:Panel>
 
         <div class="form-group">
-            <asp:HyperLink ID="AddLink" CssClass="btn btn-primary m-btn m-btn--custom" NavigateUrl="~/PencapaianProgram/Add.aspx" runat="server">Tambah</asp:HyperLink>
+            
+            
+            <div class="btn-group dropdown">
+                <asp:HyperLink ID="AddLink" CssClass="btn btn-primary" NavigateUrl="~/PencapaianProgram/Add.aspx" runat="server">Tambah</asp:HyperLink>
+                
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <asp:HyperLink ID="AddExcelLink" CssClass="dropdown-item" NavigateUrl="~/PencapaianProgram/Excel.aspx" runat="server">Excel</asp:HyperLink>
+                </div>
+            </div>
         </div>
         
         <asp:Repeater ID="PencapaianProgramRepeater" runat="server">
