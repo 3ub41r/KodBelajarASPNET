@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[MuatNaikExcel]    Script Date: 11/03/2017 17:43:49 ******/
+/****** Object:  Table [dbo].[MuatNaikExcel]    Script Date: 11/03/2017 18:03:43 ******/
 SET ANSI_NULLS ON
 GO
 

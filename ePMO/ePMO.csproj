@@ -349,7 +349,9 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\MuatNaikExcel.cs" />
     <Compile Include="Entities\PencapaianProgram.cs" />
+    <Compile Include="Entities\PencapaianProgramExcel.cs" />
     <Compile Include="Entities\Pengguna.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

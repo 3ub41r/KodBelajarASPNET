@@ -21,6 +21,6 @@
             </label>
         </div>
         
-        <asp:Button ID="UploadBtn" CssClass="btn btn-primary" runat="server" Text="Muat Naik" />
+        <asp:Button ID="UploadBtn" CssClass="btn btn-primary" runat="server" Text="Muat Naik" OnClick="UploadBtn_Click" />
     </div>
 </asp:Content>
