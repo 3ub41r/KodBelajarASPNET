@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Dapper;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Dapper;
 
 namespace ePMO.PencapaianProgram
 {
@@ -31,12 +26,16 @@ namespace ePMO.PencapaianProgram
             var conn = ConfigurationManager.ConnectionStrings["ePMO"].ToString();
             using (var c = new SqlConnection(conn))
             {
+                // Insert
                 c.Execute(sql, new
                 {
                     KodProgram = KodProgram.Text,
                     TarikhProgram = TarikhProgram.Text,
                     Lulus = Lulus.Checked
                 });
+
+                // Redirect
+                Response.Redirect("~/PencapaianProgram/List.aspx?success=1");
             }
         }
     }

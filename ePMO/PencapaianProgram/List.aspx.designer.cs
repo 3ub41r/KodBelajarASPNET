@@ -13,6 +13,15 @@ namespace ePMO.PencapaianProgram {
     public partial class List {
         
         /// <summary>
+        /// InsertSuccessPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel InsertSuccessPanel;
+        
+        /// <summary>
         /// AddLink control.
         /// </summary>
         /// <remarks>
@@ -20,5 +29,14 @@ namespace ePMO.PencapaianProgram {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink AddLink;
+        
+        /// <summary>
+        /// PencapaianProgramRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater PencapaianProgramRepeater;
     }
 }
