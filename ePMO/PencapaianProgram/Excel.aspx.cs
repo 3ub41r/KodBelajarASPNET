@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dapper;
 using ePMO.Entities;
+using ExcelDataReader;
 
 namespace ePMO.PencapaianProgram
 {
@@ -27,7 +28,7 @@ namespace ePMO.PencapaianProgram
             if (string.IsNullOrEmpty(originalFileNamefileName)) return;
 
             var ext = originalFileNamefileName.Substring(originalFileNamefileName.LastIndexOf(".", StringComparison.Ordinal) + 1).ToLower();
-            var newFileName = RandomString() + "." + ext;
+            var newFileName = originalFileNamefileName.Trim() + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + ext;
 
             // This can be moved to Web.config
             var uploadPath = Server.MapPath("~/Uploads/");
@@ -47,6 +48,8 @@ namespace ePMO.PencapaianProgram
             VALUES (@NamaAsal, @NamaBaru, @TarikhMuatNaik, @Lokasi);
             SELECT CAST(SCOPE_IDENTITY() as int)";
 
+            int muatNaikId;
+
             using (var c = ConnectionFactory.GetConnection())
             {
                 var excelFile = new MuatNaikExcel
@@ -57,13 +60,41 @@ namespace ePMO.PencapaianProgram
                     Lokasi = uploadLocation
                 };
 
-                var id = c.Query<int>(sql, excelFile);
+                muatNaikId = c.QuerySingle<int>(sql, excelFile);
             }
 
+            // Baca excel menggunakan ExcelDataReader
+            using (var stream = ExcelFileUpload.PostedFile.InputStream)
+            {
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    // Skip first row
+                    reader.Read();
 
-            
-            // Baca setiap row
-            // Insert masuk PencapaianProgramExcel
+                    // Loop rows
+                    while (reader.Read())
+                    {
+                        // Insert masuk PencapaianProgramExcel
+                        const string insert = @"
+                        INSERT INTO PencapaianProgramExcel (KodProgram, TarikhProgram, BilanganHari, Lulus, IdMuatNaikExcel)
+                        VALUES (@KodProgram, @TarikhProgram, @BilanganHari, @Lulus, @IdMuatNaikExcel)";
+                        
+                        var row = new PencapaianProgramExcel
+                        {
+                            KodProgram = reader.GetValue(0).ToString(),
+                            TarikhProgram = reader.GetValue(1).ToString(),
+                            BilanganHari = reader.GetValue(2).ToString(),
+                            Lulus = reader.GetValue(3).ToString(),
+                            IdMuatNaikExcel = muatNaikId
+                        };
+
+                        using (var c = ConnectionFactory.GetConnection())
+                        {
+                            c.Execute(insert, row);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
