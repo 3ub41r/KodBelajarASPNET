@@ -39,7 +39,11 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td><%# Eval("NamaAsal") %></td>
+                    <td>
+                        <asp:HyperLink ID="MuatNaikLink" NavigateUrl='<%# "~/PencapaianProgram/ViewExcel.aspx?Id=" + Eval("Id") %>' runat="server">
+                            <%# Eval("NamaAsal") %>
+                        </asp:HyperLink>
+                    </td>
                     <td><%# Eval("NamaBaru") %></td>
                     <td><%# Eval("TarikhMuatNaik") %></td>
                 </tr>
