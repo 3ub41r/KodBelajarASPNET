@@ -69,5 +69,7 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
+
+        <asp:Button ID="ImportBtn" runat="server" CssClass="btn btn-primary" Text="Impot" />
     </div>
 </asp:Content>

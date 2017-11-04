@@ -76,16 +76,31 @@ namespace ePMO.PencapaianProgram
                     {
                         // Insert masuk PencapaianProgramExcel
                         const string insert = @"
-                        INSERT INTO PencapaianProgramExcel (KodProgram, TarikhProgram, BilanganHari, Lulus, IdMuatNaikExcel)
-                        VALUES (@KodProgram, @TarikhProgram, @BilanganHari, @Lulus, @IdMuatNaikExcel)";
-                        
+                        INSERT INTO PencapaianProgramExcel (KodProgram, TarikhProgram, BilanganHari, Lulus, IdMuatNaikExcel, Ralat)
+                        VALUES (@KodProgram, @TarikhProgram, @BilanganHari, @Lulus, @IdMuatNaikExcel, @Ralat)";
+
+                        var ralat = new List<string>();
+
+                        // Semak tarikh
+                        var tarikhProgram = reader.GetValue(1);
+                        var tarikhProgramStr = tarikhProgram?.ToString() ?? "";
+                        try
+                        {
+                            DateTime.Parse(tarikhProgramStr);
+                        }
+                        catch (Exception exception)
+                        {
+                            ralat.Add(exception.ToString());
+                        }
+
                         var row = new PencapaianProgramExcel
                         {
                             KodProgram = reader.GetValue(0).ToString(),
-                            TarikhProgram = reader.GetValue(1).ToString(),
+                            TarikhProgram = tarikhProgramStr,
                             BilanganHari = reader.GetValue(2).ToString(),
                             Lulus = reader.GetValue(3).ToString(),
-                            IdMuatNaikExcel = muatNaikId
+                            IdMuatNaikExcel = muatNaikId,
+                            Ralat = string.Join(", ", ralat)
                         };
 
                         using (var c = ConnectionFactory.GetConnection())
