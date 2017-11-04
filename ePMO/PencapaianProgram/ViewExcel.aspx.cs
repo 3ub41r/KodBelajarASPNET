@@ -43,5 +43,44 @@ namespace ePMO.PencapaianProgram
                 PenilaianProgramRepeater.DataBind();
             }
         }
+
+        protected void ImportBtn_Click(object sender, EventArgs e)
+        {
+            var id = Request.QueryString["Id"];
+
+            // Dapatkan data dari PencapaianProgramExcel
+            const string sql = @"
+            SELECT * FROM PencapaianProgramExcel 
+            WHERE IdMuatNaikExcel = @IdMuatNaikExcel
+            AND Ralat = ''";
+
+            using (var c = ConnectionFactory.GetConnection())
+            {
+                var pencapaian = c.Query<PencapaianProgramExcel>(sql, new { IdMuatNaikExcel = int.Parse(id) });
+
+                if (!pencapaian.Any()) return;
+
+                // Insert into PenilaianProgram
+                const string insert = @"
+                INSERT INTO PencapaianProgram (KodProgram, TarikhProgram, BilanganHari, Lulus, JenisKemasukan)
+                VALUES (@KodProgram, @TarikhProgram, @BilanganHari, @Lulus, 'Excel')";
+
+                foreach (var p in pencapaian)
+                {
+                    var pencapaianProgram = new Entities.PencapaianProgram
+                    {
+                        KodProgram = p.KodProgram,
+                        TarikhProgram = DateTime.Parse(p.TarikhProgram),
+                        BilanganHari = int.Parse(p.BilanganHari),
+                        Lulus = p.Lulus.Equals("1")
+                    };
+
+                    c.Execute(insert, pencapaianProgram);
+                }
+
+            }
+            // Pindahkan data ke PenilaianProgram
+
+        }
     }
 }

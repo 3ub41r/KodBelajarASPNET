@@ -73,7 +73,7 @@
         </asp:Repeater>
 
         <div class="form-group">
-            <asp:Button ID="ImportBtn" runat="server" CssClass="btn btn-primary" Text="Impot" />
+            <asp:Button ID="ImportBtn" runat="server" CssClass="btn btn-primary" Text="Impot" OnClick="ImportBtn_Click" />
             <asp:HyperLink ID="MuatNaikLink" runat="server" CssClass="btn btn-link" NavigateUrl="~/PencapaianProgram/Excel.aspx" ToolTip="Senarai Excel yang telah dimuat naik">Senarai</asp:HyperLink>
         </div>
     </div>
