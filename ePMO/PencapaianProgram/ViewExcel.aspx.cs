@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Dapper;
+using ePMO.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using Dapper;
-using ePMO.Entities;
 
 namespace ePMO.PencapaianProgram
 {
@@ -57,15 +55,16 @@ namespace ePMO.PencapaianProgram
             using (var c = ConnectionFactory.GetConnection())
             {
                 var pencapaian = c.Query<PencapaianProgramExcel>(sql, new { IdMuatNaikExcel = int.Parse(id) });
+                var pencapaianProgramExcels = pencapaian as IList<PencapaianProgramExcel> ?? pencapaian.ToList();
 
-                if (!pencapaian.Any()) return;
+                if (!pencapaianProgramExcels.Any()) return;
 
                 // Insert into PenilaianProgram
                 const string insert = @"
                 INSERT INTO PencapaianProgram (KodProgram, TarikhProgram, BilanganHari, Lulus, JenisKemasukan)
                 VALUES (@KodProgram, @TarikhProgram, @BilanganHari, @Lulus, 'Excel')";
 
-                foreach (var p in pencapaian)
+                foreach (var p in pencapaianProgramExcels)
                 {
                     var pencapaianProgram = new Entities.PencapaianProgram
                     {
@@ -76,11 +75,16 @@ namespace ePMO.PencapaianProgram
                     };
 
                     c.Execute(insert, pencapaianProgram);
+
+                    // Set TarikhDiimpot
+                    const string update = @"
+                    UPDATE PencapaianProgramExcel
+                    SET TarikhDiimpot = @TarikhDiimpot
+                    WHERE Id = @Id";
+
+                    c.Execute(update, new { TarikhDiimpot = DateTime.Now, p.Id });
                 }
-
             }
-            // Pindahkan data ke PenilaianProgram
-
         }
     }
 }

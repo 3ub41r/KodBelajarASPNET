@@ -28,6 +28,8 @@ namespace ePMO.Entities
         [StringLength(500)]
         public string Ralat { get; set; }
 
+        public DateTime? TarikhDiimpot { get; set; }
+
         public virtual MuatNaikExcel MuatNaikExcel { get; set; }
     }
 }

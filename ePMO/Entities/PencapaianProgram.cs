@@ -26,7 +26,7 @@ namespace ePMO.Entities
 
         public bool Terhapus { get; set; }
 
-        public int IdPengguna { get; set; }
+        public int? IdPengguna { get; set; }
 
         public virtual Pengguna Pengguna { get; set; }
     }

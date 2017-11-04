@@ -53,6 +53,7 @@
                         <th>Bilangan Hari</th>
                         <th>Lulus</th>
                         <th>Ralat</th>
+                        <th>Impot</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,7 +64,10 @@
                     <td><%# Eval("TarikhProgram") %></td>
                     <td><%# Eval("BilanganHari") %></td>
                     <td><%# Eval("Lulus") %></td>
-                    <td><%# Eval("Ralat") %></td>
+                    <td>
+                        <small><%# Eval("Ralat") %></small>
+                    </td>
+                    <td><%# Eval("TarikhDiimpot") %></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

@@ -28,7 +28,7 @@ namespace ePMO.Entities
         [StringLength(500)]
         public string Lokasi { get; set; }
 
-        public bool? TelahImpot { get; set; }
+        public DateTime? TarikhDiimpot { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PencapaianProgramExcel> PencapaianProgramExcels { get; set; }
