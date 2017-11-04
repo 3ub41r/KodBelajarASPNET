@@ -52,16 +52,18 @@
                         <th>Tarikh</th>
                         <th>Bilangan Hari</th>
                         <th>Lulus</th>
+                        <th>Ralat</th>
                     </tr>
                     </thead>
                     <tbody>
             </HeaderTemplate>
             <ItemTemplate>
-                <tr>
+                <tr<%# (string) Eval("Ralat") != "" ? " class='table-danger'" : "" %>>
                     <td><%# Eval("KodProgram") %></td>
                     <td><%# Eval("TarikhProgram") %></td>
                     <td><%# Eval("BilanganHari") %></td>
                     <td><%# Eval("Lulus") %></td>
+                    <td><%# Eval("Ralat") %></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
