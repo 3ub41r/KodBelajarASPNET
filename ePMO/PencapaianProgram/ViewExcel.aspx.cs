@@ -18,22 +18,29 @@ namespace ePMO.PencapaianProgram
 
         protected void BindMuatNaikExcel()
         {
-            // Dapatkan rekod
+            // Dapatkan rekod MuatNaikExcel
             var id = Request.QueryString["Id"];
 
             if (string.IsNullOrEmpty(id)) return;
 
             const string sql = @"SELECT * FROM MuatNaikExcel WHERE Id = @Id";
+            var excelId = int.Parse(id);
 
             using (var c = ConnectionFactory.GetConnection())
             {
-                var excelId = int.Parse(id);
                 var excel = c.QueryFirstOrDefault<MuatNaikExcel>(sql, new { Id = excelId });
 
                 NamaAsal.Text = excel.NamaAsal;
                 NamaBaru.Text = excel.NamaBaru;
                 TarikhMuatNaik.Text = excel.TarikhMuatNaik.ToString();
                 Lokasi.Text = excel.Lokasi;
+
+                // Dapatkan senarai rekod PencapaianProgram dari MuatNaikExcel
+                const string pencapaianSql = @"SELECT * FROM PencapaianProgramExcel WHERE IdMuatNaikExcel = @IdMuatNaikExcel";
+
+                var dataPenilaian = c.Query<PencapaianProgramExcel>(pencapaianSql, new { IdMuatNaikExcel = excelId });
+                PenilaianProgramRepeater.DataSource = dataPenilaian;
+                PenilaianProgramRepeater.DataBind();
             }
         }
     }

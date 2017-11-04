@@ -45,7 +45,7 @@
 
         <asp:Repeater ID="PenilaianProgramRepeater" runat="server">
             <HeaderTemplate>
-                <table>
+                <table class="table">
                     <thead>
                     <tr>
                         <th>Kod Program</th>
@@ -55,8 +55,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    
-                    
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
@@ -67,8 +65,8 @@
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
-                </tbody>
-            </table>    
+                    </tbody>
+                </table>
             </FooterTemplate>
         </asp:Repeater>
     </div>
