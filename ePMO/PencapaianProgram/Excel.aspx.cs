@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Dapper;
+﻿using Dapper;
 using ePMO.Entities;
 using ExcelDataReader;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace ePMO.PencapaianProgram
 {
@@ -16,7 +11,7 @@ namespace ePMO.PencapaianProgram
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            BindMuatNaikExcel();
         }
 
         protected void UploadBtn_Click(object sender, EventArgs e)
@@ -114,15 +109,16 @@ namespace ePMO.PencapaianProgram
             Response.Redirect($"~/PencapaianProgram/ViewExcel.aspx?Id={muatNaikId}");
         }
 
-        /// <summary>
-        /// Generate random string.
-        /// </summary>
-        /// <returns></returns>
-        protected string RandomString()
+        protected void BindMuatNaikExcel()
         {
-            var g = Guid.NewGuid();
-            var random = Convert.ToBase64String(g.ToByteArray());
-            return random.Replace("=", "").Replace("+", "");
+            const string sql = "SELECT * FROM MuatNaikExcel";
+
+            using (var c = ConnectionFactory.GetConnection())
+            {
+                var muatNaik = c.Query<MuatNaikExcel>(sql);
+                MuatNaikRepeater.DataSource = muatNaik;
+                MuatNaikRepeater.DataBind();
+            }
         }
     }
 }

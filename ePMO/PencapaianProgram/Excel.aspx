@@ -20,7 +20,34 @@
                 <span class="custom-file-control"></span>
             </label>
         </div>
-        
-        <asp:Button ID="UploadBtn" CssClass="btn btn-primary" runat="server" Text="Muat Naik" OnClick="UploadBtn_Click" />
+
+        <div class="form-group">
+            <asp:Button ID="UploadBtn" CssClass="btn btn-primary" runat="server" Text="Muat Naik" OnClick="UploadBtn_Click" />
+        </div>
+
+        <asp:Repeater ID="MuatNaikRepeater" runat="server">
+            <HeaderTemplate>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nama Asal</th>
+                        <th>Nama Baru</th>
+                        <th>Tarikh</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td><%# Eval("NamaAsal") %></td>
+                    <td><%# Eval("NamaBaru") %></td>
+                    <td><%# Eval("TarikhMuatNaik") %></td>
+                </tr>
+            </ItemTemplate>
+            <FooterTemplate>
+                </tbody>
+            </table>
+            </FooterTemplate>
+        </asp:Repeater>
     </div>
 </asp:Content>
