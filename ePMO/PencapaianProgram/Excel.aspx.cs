@@ -68,7 +68,7 @@ namespace ePMO.PencapaianProgram
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
-                    // Skip first row
+                    // Skip first row - header row
                     reader.Read();
 
                     // Loop rows
