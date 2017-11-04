@@ -23,6 +23,9 @@
 
         <div class="form-group">
             <asp:Button ID="UploadBtn" CssClass="btn btn-primary" runat="server" Text="Muat Naik" OnClick="UploadBtn_Click" />
+            <asp:HyperLink ID="PencapaianProgramLink" NavigateUrl="~/PencapaianProgram/List.aspx" CssClass="btn btn-link" ToolTip="Senarai Pencapaian Program" runat="server">
+                Pencapaian Program
+            </asp:HyperLink>
         </div>
 
         <asp:Repeater ID="MuatNaikRepeater" runat="server">
