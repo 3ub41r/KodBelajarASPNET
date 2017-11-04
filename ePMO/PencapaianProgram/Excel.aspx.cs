@@ -28,7 +28,7 @@ namespace ePMO.PencapaianProgram
             if (string.IsNullOrEmpty(originalFileNamefileName)) return;
 
             var ext = originalFileNamefileName.Substring(originalFileNamefileName.LastIndexOf(".", StringComparison.Ordinal) + 1).ToLower();
-            var newFileName = originalFileNamefileName.Trim() + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + ext;
+            var newFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + ext;
 
             // This can be moved to Web.config
             var uploadPath = Server.MapPath("~/Uploads/");
@@ -95,6 +95,8 @@ namespace ePMO.PencapaianProgram
                     }
                 }
             }
+
+            Response.Redirect($"~/PencapaianProgram/ViewExcel.aspx?Id={muatNaikId}");
         }
 
         /// <summary>
