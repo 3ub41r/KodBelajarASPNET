@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[PencapaianProgramExcel]    Script Date: 11/03/2017 18:04:01 ******/
+/****** Object:  Table [dbo].[PencapaianProgramExcel]    Script Date: 11/04/2017 21:50:36 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,6 +16,7 @@ CREATE TABLE [dbo].[PencapaianProgramExcel](
 	[Lulus] [varchar](500) NULL,
 	[IdMuatNaikExcel] [int] NOT NULL,
 	[Ralat] [varchar](500) NULL,
+	[TarikhDiimpot] [datetime] NULL,
  CONSTRAINT [PK_PencapaianProgramExcel] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

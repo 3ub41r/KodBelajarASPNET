@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[PencapaianProgram]    Script Date: 11/03/2017 09:23:02 ******/
+/****** Object:  Table [dbo].[PencapaianProgram]    Script Date: 11/04/2017 21:50:16 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,7 +16,6 @@ CREATE TABLE [dbo].[PencapaianProgram](
 	[Lulus] [bit] NULL,
 	[JenisKemasukan] [varchar](50) NULL,
 	[Terhapus] [bit] NOT NULL,
-	[IdPengguna] [int] NULL,
  CONSTRAINT [PK_PencapaianProgram] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -26,13 +25,6 @@ CREATE TABLE [dbo].[PencapaianProgram](
 GO
 
 SET ANSI_PADDING OFF
-GO
-
-ALTER TABLE [dbo].[PencapaianProgram]  WITH CHECK ADD  CONSTRAINT [FK_PencapaianProgram_Pengguna] FOREIGN KEY([IdPengguna])
-REFERENCES [dbo].[Pengguna] ([Id])
-GO
-
-ALTER TABLE [dbo].[PencapaianProgram] CHECK CONSTRAINT [FK_PencapaianProgram_Pengguna]
 GO
 
 ALTER TABLE [dbo].[PencapaianProgram] ADD  CONSTRAINT [DF_PencapaianProgram_Terhapus]  DEFAULT ((0)) FOR [Terhapus]

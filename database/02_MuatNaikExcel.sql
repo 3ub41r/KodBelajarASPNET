@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[MuatNaikExcel]    Script Date: 11/03/2017 18:03:43 ******/
+/****** Object:  Table [dbo].[MuatNaikExcel]    Script Date: 11/04/2017 21:50:00 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[MuatNaikExcel](
 	[NamaBaru] [varchar](500) NULL,
 	[TarikhMuatNaik] [datetime] NULL,
 	[Lokasi] [varchar](500) NULL,
-	[TelahImpot] [bit] NULL,
+	[TarikhDiimpot] [datetime] NULL,
  CONSTRAINT [PK_MuatNaikExcel] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -26,7 +26,7 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-ALTER TABLE [dbo].[MuatNaikExcel] ADD  CONSTRAINT [DF_MuatNaikExcel_TelahImpot]  DEFAULT ((0)) FOR [TelahImpot]
+ALTER TABLE [dbo].[MuatNaikExcel] ADD  CONSTRAINT [DF_MuatNaikExcel_TelahImpot]  DEFAULT ((0)) FOR [TarikhDiimpot]
 GO
 
 
